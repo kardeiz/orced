@@ -1,13 +1,16 @@
 package db
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 import java.sql.ResultSet
-import org.skife.jdbi.v2.StatementContext
-import org.skife.jdbi.v2.tweak.ResultSetMapper
-import org.skife.jdbi.v2.sqlobject.*
-import org.skife.jdbi.v2.sqlobject.customizers.*
 
 import org.hibernate.validator.constraints.NotEmpty
-import com.fasterxml.jackson.annotation.JsonProperty
+
+import org.skife.jdbi.v2.sqlobject.*
+import org.skife.jdbi.v2.sqlobject.customizers.*
+import org.skife.jdbi.v2.StatementContext
+import org.skife.jdbi.v2.tweak.ResultSetMapper
+
 
 interface AuthorizedOrcidDao {
     @SqlQuery("SELECT count(*) FROM authorized_orcids WHERE id = :id")

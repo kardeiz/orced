@@ -1,46 +1,38 @@
 package web
 
+import io.dropwizard.auth.Auth
+
+import io.dropwizard.jersey.sessions.Flash as DropwizardFlash
+import io.dropwizard.jersey.sessions.Session
+
+import io.dropwizard.views.View
+
 import java.net.URI
+import java.util.Optional
 
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+import javax.annotation.*
+import javax.annotation.security.RolesAllowed
+
 import javax.ws.rs.*
+import javax.ws.rs.client.Client
+import javax.ws.rs.client.Entity
 import javax.ws.rs.core.Context
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.MultivaluedMap
 import javax.ws.rs.core.HttpHeaders
-
-import javax.ws.rs.ext.Provider
-
-import javax.annotation.*
-
 import javax.ws.rs.core.Form
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.NewCookie
+import javax.ws.rs.core.UriBuilder
+import javax.ws.rs.ext.ExceptionMapper
+import javax.ws.rs.ext.Provider
 
 import org.hibernate.validator.constraints.NotEmpty
 
-import javax.ws.rs.core.UriBuilder
-
-import javax.ws.rs.client.Client
-import javax.ws.rs.client.Entity
-
-import io.dropwizard.views.View
-
-import io.dropwizard.jersey.sessions.Session
-import io.dropwizard.jersey.sessions.Flash as DropwizardFlash
-
 import org.skife.jdbi.v2.DBI
-
-import javax.ws.rs.core.NewCookie
-
-import javax.annotation.security.RolesAllowed
-import io.dropwizard.auth.Auth
-
-import javax.ws.rs.core.MediaType
-
-import javax.ws.rs.ext.ExceptionMapper
-
-import java.util.Optional
 
 import utils.User
 

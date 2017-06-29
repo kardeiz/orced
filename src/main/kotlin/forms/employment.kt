@@ -5,10 +5,10 @@ import javax.ws.rs.core.MultivaluedMap
 import javax.xml.validation.SchemaFactory
 import javax.xml.XMLConstants
 
-import org.orcid.jaxb.model.record_v2.Employment
-
 import org.orcid.jaxb.model.common_v2.Organization
 import org.orcid.jaxb.model.common_v2.FuzzyDate
+
+import org.orcid.jaxb.model.record_v2.Employment
 
 import forms.*
 import forms.common.*

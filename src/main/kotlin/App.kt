@@ -1,27 +1,27 @@
-
 import io.dropwizard.Application as DropWizardApplication
-
-import io.dropwizard.setup.Bootstrap
-import io.dropwizard.setup.Environment
 
 import io.dropwizard.assets.AssetsBundle
 
-import io.dropwizard.migrations.MigrationsBundle
-
-import io.dropwizard.views.ViewBundle
+import io.dropwizard.auth.AuthDynamicFeature
+import io.dropwizard.auth.AuthValueFactoryProvider
 
 import io.dropwizard.client.JerseyClientBuilder
 
 import io.dropwizard.db.DataSourceFactory
 
+import io.dropwizard.jdbi.DBIFactory
+
 import io.dropwizard.jersey.sessions.SessionFactoryProvider
+
+import io.dropwizard.migrations.MigrationsBundle
+
+import io.dropwizard.setup.Bootstrap
+import io.dropwizard.setup.Environment
+
+import io.dropwizard.views.ViewBundle
 
 import org.eclipse.jetty.server.session.SessionHandler
 
-import io.dropwizard.jdbi.DBIFactory
-
-import io.dropwizard.auth.AuthDynamicFeature
-import io.dropwizard.auth.AuthValueFactoryProvider
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
 
 public class App: DropWizardApplication<utils.Config>() {

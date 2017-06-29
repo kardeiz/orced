@@ -1,52 +1,46 @@
 package utils
 
-import java.net.URI
+import com.codahale.metrics.MetricRegistry
 
-import io.dropwizard.Configuration as DropWizardConfiguration
-
-import javax.ws.rs.*
-import javax.ws.rs.core.Response
-import javax.annotation.*
-
-import javax.ws.rs.core.UriBuilder
-
-import org.hibernate.validator.constraints.NotEmpty
-
-import javax.validation.constraints.NotNull
-
-import io.dropwizard.client.JerseyClientConfiguration
-
-import io.dropwizard.db.DataSourceFactory
-
-import org.jose4j.jwt.consumer.JwtConsumerBuilder
-import org.jose4j.jwt.consumer.JwtContext
-
-import org.jose4j.jws.JsonWebSignature
-import org.jose4j.jwt.JwtClaims
-
-import org.jose4j.jws.AlgorithmIdentifiers.HMAC_SHA256
-
-import org.jose4j.keys.HmacKey
+import com.github.toastshaman.dropwizard.auth.jwt.JwtAuthFilter
 
 import io.dropwizard.auth.Authenticator
 import io.dropwizard.auth.Authorizer
 import io.dropwizard.auth.UnauthorizedHandler
 
-import com.github.toastshaman.dropwizard.auth.jwt.JwtAuthFilter
+import io.dropwizard.cli.ConfiguredCommand
 
+import io.dropwizard.client.JerseyClientConfiguration
+
+import io.dropwizard.Configuration as DropWizardConfiguration
+
+import io.dropwizard.db.DataSourceFactory
+
+import io.dropwizard.setup.Bootstrap
+
+import java.net.URI
 import java.util.Optional
 
-import org.skife.jdbi.v2.DBI
+import javax.annotation.*
+import javax.validation.constraints.NotNull
 
-import io.dropwizard.cli.ConfiguredCommand
+import javax.ws.rs.*
+import javax.ws.rs.core.Response
+import javax.ws.rs.core.UriBuilder
 
 import net.sourceforge.argparse4j.inf.Namespace
 import net.sourceforge.argparse4j.inf.Subparser
 
-import io.dropwizard.setup.Bootstrap
+import org.hibernate.validator.constraints.NotEmpty
 
-import com.codahale.metrics.MetricRegistry
+import org.jose4j.jws.AlgorithmIdentifiers.HMAC_SHA256
+import org.jose4j.jws.JsonWebSignature
+import org.jose4j.jwt.consumer.JwtConsumerBuilder
+import org.jose4j.jwt.consumer.JwtContext
+import org.jose4j.jwt.JwtClaims
+import org.jose4j.keys.HmacKey
 
+import org.skife.jdbi.v2.DBI
 import org.skife.jdbi.v2.util.*
 
 class Config() : DropWizardConfiguration() {

@@ -1,8 +1,8 @@
 package forms
 
-import javax.xml.validation.Validator
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.util.JAXBSource
+import javax.xml.validation.Validator
 
 import org.orcid.jaxb.model.common_v2.Contributor
 import org.orcid.jaxb.model.common_v2.Subtitle

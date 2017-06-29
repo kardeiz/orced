@@ -7,16 +7,16 @@ import javax.xml.XMLConstants
 
 import org.orcid.jaxb.model.record_v2.Work
 
+import org.orcid.jaxb.model.common_v2.Country
+import org.orcid.jaxb.model.common_v2.PublicationDate
+import org.orcid.jaxb.model.common_v2.Title
+import org.orcid.jaxb.model.common_v2.Url
+
 import org.orcid.jaxb.model.record_v2.Citation
 import org.orcid.jaxb.model.record_v2.ExternalIDs
 import org.orcid.jaxb.model.record_v2.WorkContributors
 import org.orcid.jaxb.model.record_v2.WorkTitle
 import org.orcid.jaxb.model.record_v2.WorkType
-
-import org.orcid.jaxb.model.common_v2.Country
-import org.orcid.jaxb.model.common_v2.PublicationDate
-import org.orcid.jaxb.model.common_v2.Title
-import org.orcid.jaxb.model.common_v2.Url
 
 import forms.*
 import forms.common.*
