@@ -76,8 +76,6 @@ shadowJar {
     exclude 'META-INF/*.RSA'
 }
 
-
-// Define the main class for the application
 mainClassName = 'App'
 
 run {
@@ -85,15 +83,3 @@ run {
         args appArgs.split()
     }    
 }
-
-// task xjc { 
-//     doLast { 
-//         // exec {
-//         //     commandLine "rsync", "-avz", "external/ORCID-Source/orcid-model/src/main/resources/", "src/main/resources/ext/"
-//         // }
-//         exec {
-//             // commandLine "xjc", "-XautoNameResolution", "-extension", "-d", "src/main/java-old/", "src/main/resources/ext/record_2.0/"
-//             commandLine "xjc", "-XautoNameResolution", "-extension", "-b", "binding.xjb", "-d", "src/main/java/", "src/main/resources/ext/record_2.0/"
-//         }
-//     }
-// }
