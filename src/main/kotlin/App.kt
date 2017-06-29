@@ -24,7 +24,7 @@ import io.dropwizard.auth.AuthDynamicFeature
 import io.dropwizard.auth.AuthValueFactoryProvider
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature
 
-public class App : DropWizardApplication<utils.Config>() {
+public class App: DropWizardApplication<utils.Config>() {
 
     companion object {
         @JvmStatic public fun main(args: Array<String>) {
@@ -37,7 +37,6 @@ public class App : DropWizardApplication<utils.Config>() {
             .using(configuration.jerseyClient)
             .build(getName())
 
-        val mainController = web.MainController()
 
         val factory = DBIFactory()
         val dbi = factory.build(environment, configuration.database, "h2")
@@ -45,13 +44,16 @@ public class App : DropWizardApplication<utils.Config>() {
         val authorizedOrcidDao = dbi.onDemand(db.AuthorizedOrcidDao::class.java)
         val tokenRecordDao = dbi.onDemand(db.TokenRecordDao::class.java)
 
-        val objectMapperFactory = environment.getObjectMapper()
-            .enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT)
+        with(environment.getObjectMapper()) {
+            enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT)
+        }
 
-        mainController.client = client
-        mainController.dbi = dbi
-        mainController.localConfig = configuration.local
-        mainController.tokenRecordDao = tokenRecordDao
+        val mainController = web.MainController().apply {
+            this.client = client
+            this.dbi = dbi
+            this.localConfig = configuration.local
+            this.tokenRecordDao = tokenRecordDao
+        }
 
         environment.jersey().register(mainController)
         environment.jersey().register(web.AdminController.build(mainController))

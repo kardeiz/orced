@@ -44,9 +44,6 @@ import java.util.Optional
 
 import utils.User
 
-data class WebError(val msg: String, val status: Int = 500) : WebApplicationException(
-    Response.status(status).entity(msg).build())
-
 data class Flash(val key: String, val value: String)
 
 data class Flashes(val inner: List<Flash>) {
@@ -71,13 +68,12 @@ open class MainController() {
     fun index(
         @Session flashes: DropwizardFlash<Flashes>,
         @Auth user: Optional<User>): View {
-        val out = object : View("/templates/home.ftl") {
+        return object : View("/templates/home.ftl") {
             val ctx = PageContext(localConfig).apply {
                 this.flash = flashes.get().orElse(null)
                 this.user = user.orElse(null)
             }
         }
-        return out
     }
 
     @GET @Path("/auth/handle-orcid-code")
@@ -118,7 +114,7 @@ open class MainController() {
     }
 
     @GET @Path("/error-quick")
-    fun flashing(
+    fun errorQuick(
         @Session flashes: DropwizardFlash<Flashes>,
         @QueryParam("msg") msg: String,
         @DefaultValue("/") @QueryParam("to") to: String): Response {
@@ -150,28 +146,28 @@ class AdminController : MainController() {
     }
 
     @GET @Path("/token-records")
-    fun tokenRecords(@Session flashes: DropwizardFlash<Flashes>, @Auth user: User): View =
-        object : View("/templates/token-records.ftl") {
+    fun tokenRecords(@Session flashes: DropwizardFlash<Flashes>, @Auth user: User): View {
+        return object : View("/templates/token-records.ftl") {
             val ctx = PageContext(localConfig).apply {
                 this.flash = flashes.get().orElse(null)
                 this.user = user
             }
             val tokenRecords = tokenRecordDao.all()
         }
+    }
 
     @GET @Path("/{orcid}/employment/new")
     fun employmentNew(
         @Session flashes: DropwizardFlash<Flashes>,
         @PathParam("orcid") orcid: String,
         @Auth user: User): View {
-        val out = object : View("/templates/employment-new.ftl") {
+        return object : View("/templates/employment-new.ftl") {
             val ctx = PageContext(localConfig).apply {
                 this.flash = flashes.get().orElse(null)
                 this.user = user
             }
             val orcid = orcid
         }
-        return out
     }
 
     @POST
@@ -245,8 +241,6 @@ class AdminController : MainController() {
 
         val out = try {
             val work = forms.work.buildWork(params)
-
-            throw Throwable("No token record for that ORCID")
 
             val tokenRecord = tokenRecordDao.findByOrcid(orcid) ?: throw Throwable("No token record for that ORCID")
 
