@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: app
+  - changeSet:
+      id: 1
+      author: jacob
+      changes:
+        - createTable:
+            tableName: authorized_orcids
+            columns:
+              - column:
+                  name: id
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+        - createTable:
+            tableName: token_records
+            columns:
+              - column:
+                  name: access_token
+                  type: varchar(255)
+              - column:
+                  name: token_type
+                  type: varchar(255)
+              - column:
+                  name: refresh_token
+                  type: varchar(255)
+              - column:
+                  name: scope
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: orcid
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: expires_in
+                  type: bigInt

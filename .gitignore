@@ -1,0 +1,13 @@
+.gradle
+/build/
+
+/config.yml
+/config.*.yml
+
+/assets/node_modules/
+/app.db*
+
+/.env
+/*.env
+
+/wrapper.sh
